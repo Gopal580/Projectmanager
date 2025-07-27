@@ -2,7 +2,7 @@
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 // utils/sendMail.js
-const nodemailer = require('nodemailer');
+
 
 // No need to call dotenv.config() here if you're on Render and already set env variables in dashboard.
 
