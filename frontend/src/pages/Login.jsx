@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../contexts/AuthContext';
 import { toast } from 'react-toastify';
-
+import { BACKEND_URL } from '../utils/backendurl';
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate=useNavigate();
@@ -12,7 +12,7 @@ const Login = () => {
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/users/login', values,{ withCredentials: true});
+      const res = await axios.post(`${BACKEND_URL}/users/login`, values,{ withCredentials: true});
       message.success(res.data.message);
       toast.success("Login Successfull");
       

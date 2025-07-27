@@ -26,7 +26,7 @@ exports.loginapi = async (req, res) => {
     // Login success
    
     const token = jwt.sign({id:user._id,email:user.email,userName:user.userName}, process.env.JWT_SECRET, { expiresIn: '1h' });
-   const refreshToken = jwt.sign({id:user._id,email:user.email,userName:user.userName}, process.env.JWT_SECRET, { expiresIn: '1h' });
+   const refreshToken = jwt.sign({id:user._id,email:user.email,userName:user.userName}, process.env.JWT_SECRET, { expiresIn: '7d' });
      
     res.cookie('refreshToken', refreshToken, {
   httpOnly: true,

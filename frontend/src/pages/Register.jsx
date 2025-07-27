@@ -4,6 +4,7 @@ import { Form, Input, Button, Modal, message } from 'antd';
 import axios from 'axios';
  import { Link, useNavigate } from 'react-router-dom';
  import { toast } from 'react-toastify';
+ import { BACKEND_URL } from '../utils/backendurl';
 const SignupForm = () => {
   const [form] = Form.useForm();
   const [otpModalVisible, setOtpModalVisible] = useState(false);
@@ -16,7 +17,7 @@ const SignupForm = () => {
   const handleSignup = async (values) => {
     try {
       setLoading(true);
-      const response = await axios.post('http://localhost:5000/api/users/send-otp', {
+      const response = await axios.post(`${BACKEND_URL}/users/send-otp`, {
         email: values.email,
         userName:values.username,
          purpose: "signup"
@@ -42,7 +43,7 @@ const SignupForm = () => {
 
   const handleVerifyOtp = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/api/users/verify-otp', {
+      const response = await axios.post(`${BACKEND_URL}/users/verify-otp`, {
         email,
         otp,
       });
@@ -50,7 +51,7 @@ const SignupForm = () => {
       if (response.data.success) {
         //  Now complete signup
         
-        await axios.post('http://localhost:5000/api/users/signup', userData);
+        await axios.post(`${BACKEND_URL}/users/signup`, userData);
         message.success('Signup successful');
         setOtpModalVisible(false);
         form.resetFields();

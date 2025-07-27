@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useAuth } from "../contexts/AuthContext";
-
-const baseURL = "http://localhost:5000/api"; // Change if needed
+import { BACKEND_URL } from "./backendurl";
+const baseURL = `${BACKEND_URL}`; // Change if needed
 
 const useAxios = () => {
   const { accessToken, setAccessToken } = useAuth();

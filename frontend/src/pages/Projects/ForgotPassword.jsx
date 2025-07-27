@@ -3,7 +3,7 @@ import { Form, Input, Button, Modal } from 'antd';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-
+import { BACKEND_URL } from '../../utils/backendurl';
 const ForgotPassword = () => {
   const [form] = Form.useForm();
   const [otpModalVisible, setOtpModalVisible] = useState(false);
@@ -21,7 +21,7 @@ const ForgotPassword = () => {
       setEmail(values.email);
       setPassword(values.password);
 
-      const res = await axios.post('http://localhost:5000/api/users/send-otp', { email: values.email, purpose: "reset" });
+      const res = await axios.post(`${BACKEND_URL}/users/send-otp`, { email: values.email, purpose: "reset" });
       console.log(res)
       toast.success('OTP sent to your email');
       setOtpModalVisible(true);
@@ -40,11 +40,11 @@ const ForgotPassword = () => {
     setLoading(true);
     try {
       // Verify OTP
-      const verifyRes = await axios.post('http://localhost:5000/api/users/verify-otp', { email, otp });
+      const verifyRes = await axios.post(`${BACKEND_URL}/users/verify-otp`, { email, otp });
 
       // If OTP correct  then reset password
       if (verifyRes.data.success) {
-        await axios.post('http://localhost:5000/api/users/reset-password', {
+        await axios.post(`${BACKEND_URL}/users/reset-password`, {
           email,
           password,
         });
