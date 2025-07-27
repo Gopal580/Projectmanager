@@ -5,12 +5,17 @@ const  authRoutes=require('./Routes/authRoutes')
 const projectRoutes=require('./Routes/projectRoutes')
 const cookieParser = require('cookie-parser');
 
-const app = express();
+const app = express(); 
 app.use(cookieParser());
-app.use(cors({
-  origin: 'https://projectmanager-liard.vercel.app', 
+app.use(cors({ 
+  origin: process.env.CORS, // Use environment variable for CORS origin
   credentials: true                
 }));
+app.options('*', cors({
+  origin: process.env.CORS,
+  credentials: true
+}));
+
 app.use(express.json());
 
 require('dotenv').config();
