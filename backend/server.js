@@ -4,6 +4,8 @@ const cors = require('cors');
 const  authRoutes=require('./Routes/authRoutes')
 const projectRoutes=require('./Routes/projectRoutes')
 const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv');
+dotenv.config(); // Load environment variables from .env file
 
 const app = express(); 
 app.use(cookieParser());
