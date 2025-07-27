@@ -13,10 +13,10 @@ app.use(cors({
   origin: process.env.CORS, // Use environment variable for CORS origin
   credentials: true                
 }));
-app.options('*', cors({
-  origin: process.env.CORS,
-  credentials: true
-}));
+// app.options('*', cors({
+//   origin: process.env.CORS,
+//   credentials: true
+// }));
 
 app.use(express.json());
 
