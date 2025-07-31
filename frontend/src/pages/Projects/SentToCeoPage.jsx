@@ -29,7 +29,7 @@ const SentToCeo = () => {
     refreshTrigger,
     search:debouncedSearch // 👈 include in dependency
   });
-
+ console.log(projects,"dono",columnsExtras)
   const handleApprove = async () => {
     try {
       await axiosInstance.put('/projects/bulk-update-status', {
@@ -47,11 +47,11 @@ const SentToCeo = () => {
 
   return (
     <ProjectsTable
+      data={projects}
+      columnsExtras={columnsExtras}
       selectedRowKeys={selectedRowKeys}
       setSelectedRowKeys={setSelectedRowKeys}
       onApprove={handleApprove}
-      data={projects}
-      columnsExtras={columnsExtras}
       searchValue={search}
       setSearchValue={setSearch}
     />

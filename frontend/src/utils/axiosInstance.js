@@ -11,7 +11,7 @@ const useAxios = () => {
     withCredentials: true, // very important to send cookies
   });
 
-  // Request interceptor
+  // Request interc eptor
   axiosInstance.interceptors.request.use((config) => {
     
     if (accessToken) {

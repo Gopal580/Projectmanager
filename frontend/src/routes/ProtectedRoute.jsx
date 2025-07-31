@@ -1,22 +1,27 @@
-import  Layout  from '../Components/layout/Layout';
+import Layout from '../Components/layout/Layout';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 const ProtectedRoute = () => {
-  const {loading,user}=useAuth();
-  if(loading){
-    return <div>Loading</div>
+  const { loading, user } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen text-lg font-semibold">
+        Loading...
+      </div>
+    );
   }
-  if(!user){
-   return <Navigate to={'/login'} replace/>
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
   }
+
   return (
-  <Layout>
+    <Layout>
       <Outlet />
-  </Layout>
-
-
-    ); // Just renders children without checking anything
+    </Layout>
+  );
 };
 
 export default ProtectedRoute;

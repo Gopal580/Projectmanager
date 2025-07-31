@@ -5,11 +5,13 @@ const statusStyles = {
   "Sent to CEO": "bg-blue-100 text-blue-800",
   "Approved by Client": "bg-green-100 text-green-800",
   "Invoice Raised": "bg-amber-100 text-amber-800",
-  "default": "bg-gray-100 text-gray-800"
+  "default": "bg-gray-100 text-gray-800",
 };
 
-const StatusBadge = ({ status }) => (
-  <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${statusStyles[status] || statusStyles.default}`}>
+const StatusBadge = ({ status = "default" }) => (
+  <span
+    className={`whitespace-nowrap inline-block px-2 py-0.5 rounded-full text-xs font-medium ${statusStyles[status] || statusStyles.default}`}
+  >
     {status}
   </span>
 );
